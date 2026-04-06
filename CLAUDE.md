@@ -47,12 +47,12 @@ Load with: `@01-Standards/Context-Modes/<mode>.md`
 ## Absolute Paths
 
 ```
-Armoury Root:    /Users/alexbeattie/development/claude-foundation-vault
-Registry:        /Users/alexbeattie/development/claude-foundation-vault/REGISTRY.yaml
-Ignite:          /Users/alexbeattie/development/claude-foundation-vault/04-Workflows/ignite.sh
-Installer:       /Users/alexbeattie/development/claude-foundation-vault/04-Workflows/install.sh
-Agents:          /Users/alexbeattie/development/claude-foundation-vault/02-Agents/
-Skills:          /Users/alexbeattie/development/claude-foundation-vault/03-Skills/
-Standards:       /Users/alexbeattie/development/claude-foundation-vault/01-Standards/
-MCP Templates:   /Users/alexbeattie/development/claude-foundation-vault/04-Workflows/MCP-Templates/
+Armoury Root:    __VAULT_ROOT__
+Registry:        __VAULT_ROOT__/REGISTRY.yaml
+Ignite:          __VAULT_ROOT__/04-Workflows/ignite.sh
+Installer:       __VAULT_ROOT__/04-Workflows/install.sh
+Agents:          __VAULT_ROOT__/02-Agents/
+Skills:          __VAULT_ROOT__/03-Skills/
+Standards:       __VAULT_ROOT__/01-Standards/
+MCP Templates:   __VAULT_ROOT__/04-Workflows/MCP-Templates/
 ```

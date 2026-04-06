@@ -105,24 +105,23 @@ Claude Code reloads context with the new agents active.
 
 ## Local Setup — Path Configuration
 
-> **Required for all new users.**
+> **Required for all new users. Run once immediately after cloning.**
 
-This vault uses absolute paths in some configuration files (CLAUDE.md, REGISTRY.yaml, Prompt.md, and settings files). These are currently set to the original maintainer's machine. Before use, run a global find-and-replace to map them to your own home directory:
+Configuration files use a `__VAULT_ROOT__` placeholder that must be resolved to your local clone path before use. A single script handles this automatically:
 
 ```bash
-# Replace with your own username
-OLD_PATH="/Users/alexbeattie/development/claude-foundation-vault"
-NEW_PATH="$HOME/development/claude-foundation-vault"  # adjust if you cloned elsewhere
-
-grep -rl "$OLD_PATH" . \
-  --include="*.md" --include="*.yaml" --include="*.sh" --include="*.json" \
-  | xargs sed -i '' "s|$OLD_PATH|$NEW_PATH|g"
+./bootstrap.sh
 ```
+
+The script:
+- Auto-detects the vault's absolute path (works regardless of where you cloned it)
+- Replaces `__VAULT_ROOT__` across all `.yaml`, `.md`, and `.json` files
+- Marks itself and `04-Workflows/ignite.sh` as executable
 
 Verify the replacement:
 
 ```bash
-grep -r "/Users/alexbeattie" . --include="*.md" --include="*.yaml" --include="*.sh" --include="*.json"
+grep -r "__VAULT_ROOT__" . --include="*.md" --include="*.yaml" --include="*.json"
 # Should return nothing
 ```
 

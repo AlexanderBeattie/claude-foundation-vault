@@ -16,7 +16,7 @@ Identify: Language, Frameworks, Databases, Testing suite.
 Run `ignite.sh` from the project root. It auto-detects stack and injects role-aliased specialists.
 
 ```bash
-bash /Users/alexbeattie/development/claude-foundation-vault/04-Workflows/ignite.sh
+bash __VAULT_ROOT__/04-Workflows/ignite.sh
 ```
 
 What `ignite.sh` does:
@@ -41,9 +41,9 @@ Copy relevant protocol rules into local `./.claude/CLAUDE.md`:
 
 ```bash
 # Example: TypeScript project
-cat /Users/alexbeattie/development/claude-foundation-vault/01-Protocols/ECC-Rules-Library/common/agents.md >> ./.claude/CLAUDE.md
-cat /Users/alexbeattie/development/claude-foundation-vault/01-Protocols/ECC-Rules-Library/common/security.md >> ./.claude/CLAUDE.md
-cat /Users/alexbeattie/development/claude-foundation-vault/01-Protocols/ECC-Rules-Library/typescript/coding-style.md >> ./.claude/CLAUDE.md
+cat __VAULT_ROOT__/01-Protocols/ECC-Rules-Library/common/agents.md >> ./.claude/CLAUDE.md
+cat __VAULT_ROOT__/01-Protocols/ECC-Rules-Library/common/security.md >> ./.claude/CLAUDE.md
+cat __VAULT_ROOT__/01-Protocols/ECC-Rules-Library/typescript/coding-style.md >> ./.claude/CLAUDE.md
 ```
 
 ### 4. Settings

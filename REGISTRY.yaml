@@ -4,7 +4,7 @@
 
 meta:
   version: "4.0.0"
-  root: /Users/alexbeattie/development/claude-foundation-vault
+  root: __VAULT_ROOT__
 
 # ─── CORE (cache-stable anchors) ───────────────────────────────────────────
 core:
