@@ -1,4 +1,3 @@
-*CLAUDE IGNORE THIS*
 Act as the Lead System Architect. We are initializing this project using the AI-Armoury V4 (Cache-Optimized) protocols.
 
 TASK 1: TECH AUDIT
