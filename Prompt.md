@@ -10,8 +10,8 @@ TASK 2: ARMOURY INJECTION (V4)
 - COPY (cp) the following core assets from the V4 Armoury into this project:
     - Core Core: 00-Core/* -> ./.claude/
     - Core Agents: 02-Agents/core/architect.md & 02-Agents/core/planner.md -> ./.claude/agents/
-    - Global Rules: 01-Standards/rules/common/* -> ./.claude/rules/common/
-    - [Based on audit: COPY the relevant language-specific dir from 01-Standards/rules/ into ./.claude/rules/]
+    - Global Rules: 01-Standards/ECC-Rules-Library/common/* -> ./.claude/rules/common/
+    - [Based on audit: COPY the relevant language-specific dir from 01-Standards/ECC-Rules-Library/ into ./.claude/rules/]
 
 TASK 3: FORGE LOCAL IDENTITY
 - Create a project-specific CLAUDE.md in the root using the V4 Command & Control template.

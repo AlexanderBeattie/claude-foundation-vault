@@ -60,70 +60,56 @@ Claude 4.6 caches repeated prompt prefixes across API calls. The V4 architecture
 
 ---
 
-## Installation
+## Installation & Setup
 
 ### 1. Clone the vault
 
 ```bash
 git clone https://github.com/your-username/claude-foundation-vault.git ~/development/claude-foundation-vault
+cd ~/development/claude-foundation-vault
 ```
 
-### 2. Run the ignition script inside your project
+### 2. Bootstrap your local paths
 
-Navigate to any project root and run:
-
-```bash
-bash ~/development/claude-foundation-vault/04-Workflows/ignite.sh
-```
-
-`ignite.sh` will:
-- Auto-detect your project stack (TypeScript, Python, Go, Rust, Java, Kotlin, Swift, PHP, C++)
-- Map the stack-specific reviewer to the canonical `code-reviewer` role
-- Inject four fixed agents into `./.claude/agents/` — regardless of stack:
-
-| Agent | Source (TypeScript example) |
-|---|---|
-| `architect.md` | `02-Agents/core/architect.md` |
-| `code-reviewer.md` | ← `02-Agents/reviewers/typescript-reviewer.md` |
-| `planner.md` | `02-Agents/core/planner.md` |
-| `security-reviewer.md` | `02-Agents/reviewers/security-reviewer.md` |
-| `tdd-guide.md` | `02-Agents/core/tdd-guide.md` |
-
-### 3. Load the CLAUDE.md
-
-Copy `CLAUDE.md` from this vault to your project root (or merge it with an existing one). It boots the `00-Core` anchors and points Claude at the registry.
-
-### 4. Activate
-
-```
-/clear
-```
-
-Claude Code reloads context with the new agents active.
-
----
-
-## Local Setup — Path Configuration
-
-> **Required for all new users. Run once immediately after cloning.**
-
-Configuration files use a `__VAULT_ROOT__` placeholder that must be resolved to your local clone path before use. A single script handles this automatically:
+Configuration files use a `__VAULT_ROOT__` placeholder. Resolve it to your machine's absolute path in one step:
 
 ```bash
 ./bootstrap.sh
 ```
 
-The script:
-- Auto-detects the vault's absolute path (works regardless of where you cloned it)
-- Replaces `__VAULT_ROOT__` across all `.yaml`, `.md`, and `.json` files
-- Marks itself and `04-Workflows/ignite.sh` as executable
+The script auto-detects the vault's location and rewrites `__VAULT_ROOT__` across all `.yaml`, `.md`, and `.json` files. No manual path editing required.
 
-Verify the replacement:
+Verify:
 
 ```bash
 grep -r "__VAULT_ROOT__" . --include="*.md" --include="*.yaml" --include="*.json"
 # Should return nothing
 ```
+
+### 3. Ignite a new project
+
+Navigate to your target project root and open Claude Code:
+
+```bash
+cd ~/path/to/your-project
+claude
+```
+
+Then paste the full contents of `Prompt.md` into the chat. This single prompt instructs Claude to:
+- Audit the tech stack
+- Copy the core agents, rules, and cache anchors into `./.claude/`
+- Create a project-specific `CLAUDE.md` with your project mission and vault paths
+- Run `ignite.sh` to wire the stack-specific reviewer to the canonical `code-reviewer` role
+
+No manual script execution or file copying is needed — the prompt handles everything.
+
+### 4. Activate the cache
+
+```
+/clear
+```
+
+Claude Code reloads with all injected agents active and the `00-Core` cache anchors locked in.
 
 ---
 
