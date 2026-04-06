@@ -37,12 +37,15 @@ To get the ultimate environment, we use Everything Claude Code (ECC) for global 
 First, install ECC to get access to global commands like `/cost`, `/sessions`, and `/pm2`.
 
 ```bash
-git clone https://github.com/affaan-m/everything-claude-code.git ~/development/everything-claude-code
+git clone [https://github.com/affaan-m/everything-claude-code.git](https://github.com/affaan-m/everything-claude-code.git) ~/development/everything-claude-code
 cd ~/development/everything-claude-code
+npm install
 
-# Use the selective installer for ONLY commands, skills, and hooks
-# (Bypassing global rules prevents 11,000+ token waste)
-node scripts/install-apply.js --components commands,skills,hooks --global
+# Manually link the ECC "Hands" (Commands) and "Muscle" (Scripts)
+mkdir -p ~/.claude/commands ~/.claude/scripts ~/.claude/skills
+cp -r commands/*.md ~/.claude/commands/
+cp -r scripts/* ~/.claude/scripts/
+cp -r skills/* ~/.claude/skills/
 ```
 
 ### 2. Install the Project Brain (This Vault)
