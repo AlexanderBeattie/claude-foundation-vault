@@ -1,0 +1,30 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+
+# Claude local settings (contains machine-specific permissions)
+.claude/settings.local.json
+
+# Editor
+.vscode/
+.idea/
+.obsidian/
+*.swp
+*.swo
+
+# OS
+Thumbs.db

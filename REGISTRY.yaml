@@ -1,0 +1,195 @@
+# AI-Armoury Registry — V4
+# Auto-generated: 2026-04-04
+# Source of truth for all agent and skill paths.
+
+meta:
+  version: "4.0.0"
+  root: /Users/alexbeattie/development/claude-foundation-vault
+
+# ─── CORE (cache-stable anchors) ───────────────────────────────────────────
+core:
+  laws:            00-Core/laws.md
+  circuit_breaker: 00-Core/circuit-breaker.md
+  identity:        00-Core/identity.md
+
+# ─── STANDARDS ─────────────────────────────────────────────────────────────
+standards:
+  context_modes:
+    dev:      01-Standards/Context-Modes/dev.md
+    research: 01-Standards/Context-Modes/research.md
+    review:   01-Standards/Context-Modes/review.md
+  rules_library:  01-Standards/ECC-Rules-Library/
+  composition:    01-Standards/composition-templates/
+
+# ─── AGENTS ────────────────────────────────────────────────────────────────
+agents:
+  # Canonical fixed roles — always available
+  core:
+    architect:      02-Agents/core/architect.md
+    planner:        02-Agents/core/planner.md
+    tdd_guide:      02-Agents/core/tdd-guide.md
+
+  # Language & domain reviewers
+  reviewers:
+    code_reviewer:       02-Agents/reviewers/code-reviewer.md
+    cpp_reviewer:        02-Agents/reviewers/cpp-reviewer.md
+    database_reviewer:   02-Agents/reviewers/database-reviewer.md
+    flutter_reviewer:    02-Agents/reviewers/flutter-reviewer.md
+    go_reviewer:         02-Agents/reviewers/go-reviewer.md
+    java_reviewer:       02-Agents/reviewers/java-reviewer.md
+    kotlin_reviewer:     02-Agents/reviewers/kotlin-reviewer.md
+    python_reviewer:     02-Agents/reviewers/python-reviewer.md
+    rust_reviewer:       02-Agents/reviewers/rust-reviewer.md
+    security_reviewer:   02-Agents/reviewers/security-reviewer.md
+    typescript_reviewer: 02-Agents/reviewers/typescript-reviewer.md
+
+  # Build & compilation error resolvers
+  resolvers:
+    build_error_resolver:   02-Agents/resolvers/build-error-resolver.md
+    cpp_build_resolver:     02-Agents/resolvers/cpp-build-resolver.md
+    go_build_resolver:      02-Agents/resolvers/go-build-resolver.md
+    java_build_resolver:    02-Agents/resolvers/java-build-resolver.md
+    kotlin_build_resolver:  02-Agents/resolvers/kotlin-build-resolver.md
+    pytorch_build_resolver: 02-Agents/resolvers/pytorch-build-resolver.md
+    rust_build_resolver:    02-Agents/resolvers/rust-build-resolver.md
+
+  # Orchestration, documentation & tooling
+  ops:
+    chief_of_staff:  02-Agents/ops/chief-of-staff.md
+    doc_updater:     02-Agents/ops/doc-updater.md
+    docs_lookup:     02-Agents/ops/docs-lookup.md
+    e2e_runner:      02-Agents/ops/e2e-runner.md
+    harness_optimizer: 02-Agents/ops/harness-optimizer.md
+    loop_operator:   02-Agents/ops/loop-operator.md
+    refactor_cleaner: 02-Agents/ops/refactor-cleaner.md
+
+# ─── SKILLS (116 packs) ────────────────────────────────────────────────────
+skills:
+  root: 03-Skills/
+  packs:
+    - agent-eval
+    - agent-harness-construction
+    - agentic-engineering
+    - ai-first-engineering
+    - ai-regression-testing
+    - android-clean-architecture
+    - api-design
+    - architecture-decision-records
+    - article-writing
+    - autonomous-loops
+    - backend-patterns
+    - blueprint
+    - bun-runtime
+    - carrier-relationship-management
+    - claude-api
+    - claude-devfleet
+    - clickhouse-io
+    - codebase-onboarding
+    - coding-standards
+    - compose-multiplatform-patterns
+    - configure-ecc
+    - content-engine
+    - content-hash-cache-pattern
+    - context-budget
+    - continuous-agent-loop
+    - continuous-learning
+    - continuous-learning-v2
+    - cost-aware-llm-pipeline
+    - cpp-coding-standards
+    - cpp-testing
+    - crosspost
+    - customs-trade-compliance
+    - data-scraper-agent
+    - database-migrations
+    - deep-research
+    - deployment-patterns
+    - django-patterns
+    - django-security
+    - django-tdd
+    - django-verification
+    - dmux-workflows
+    - docker-patterns
+    - documentation-lookup
+    - e2e-testing
+    - energy-procurement
+    - enterprise-agent-ops
+    - eval-harness
+    - exa-search
+    - fal-ai-media
+    - flutter-dart-code-review
+    - foundation-models-on-device
+    - frontend-patterns
+    - frontend-slides
+    - golang-patterns
+    - golang-testing
+    - inventory-demand-planning
+    - investor-materials
+    - investor-outreach
+    - iterative-retrieval
+    - java-coding-standards
+    - jpa-patterns
+    - kotlin-coroutines-flows
+    - kotlin-exposed-patterns
+    - kotlin-ktor-patterns
+    - kotlin-patterns
+    - kotlin-testing
+    - laravel-patterns
+    - laravel-security
+    - laravel-tdd
+    - laravel-verification
+    - liquid-glass-design
+    - logistics-exception-management
+    - market-research
+    - mcp-server-patterns
+    - nanoclaw-repl
+    - nextjs-turbopack
+    - nuxt4-patterns
+    - nutrient-document-processing
+    - perl-patterns
+    - perl-security
+    - perl-testing
+    - plankton-code-quality
+    - postgres-patterns
+    - production-scheduling
+    - prompt-optimizer
+    - python-patterns
+    - python-testing
+    - pytorch-patterns
+    - quality-nonconformance
+    - ralphinho-rfc-pipeline
+    - regex-vs-llm-structured-text
+    - returns-reverse-logistics
+    - rust-patterns
+    - rust-testing
+    - search-first
+    - security-review
+    - security-scan
+    - skill-stocktake
+    - springboot-patterns
+    - springboot-security
+    - springboot-tdd
+    - springboot-verification
+    - strategic-compact
+    - swift-actor-persistence
+    - swift-concurrency-6-2
+    - swift-protocol-di-testing
+    - swiftui-patterns
+    - tdd-workflow
+    - team-builder
+    - verification-loop
+    - video-editing
+    - videodb
+    - visa-doc-translate
+    - x-api
+
+# ─── WORKFLOWS ─────────────────────────────────────────────────────────────
+workflows:
+  ignite:    04-Workflows/ignite.sh
+  install:   04-Workflows/install.sh
+  scripts:   04-Workflows/scripts/
+  mcp:       04-Workflows/MCP-Templates/
+
+# ─── BLUEPRINTS ────────────────────────────────────────────────────────────
+blueprints:
+  setup_guide:       05-Blueprints/Setup-New-Project.md
+  reference_examples: 05-Blueprints/Reference-Examples/

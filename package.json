@@ -1,0 +1,20 @@
+{
+  "name": "ai-armoury",
+  "version": "1.0.0",
+  "description": "AI-Armoury — Command & Control Centre for AI-assisted projects",
+  "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "install-ecc": "bash 04-Workflows/install.sh",
+    "doctor": "node 04-Workflows/scripts/doctor.js",
+    "status": "node 04-Workflows/scripts/status.js"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "chalk": "^5.3.0",
+    "simple-git": "^3.27.0",
+    "yaml": "^2.6.1"
+  }
+}
