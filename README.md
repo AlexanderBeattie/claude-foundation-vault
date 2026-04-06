@@ -2,7 +2,7 @@
 
 **Agentic Operating System optimized for Claude 4.6 Prefix Caching**
 
-A structured, cache-aware infrastructure for deploying Claude Code agents across any project. Drop the vault into your workflow, run one script, and get a full agent team — architect, code-reviewer, planner, security-reviewer, tdd-guide — wired to your stack in under 30 seconds.
+A structured, cache-aware infrastructure for deploying Claude Code agents across any project. Designed to work alongside [Everything Claude Code](https://github.com/affaan-m/everything-claude-code) as a high-performance project "Brain."
 
 ---
 
@@ -10,7 +10,7 @@ A structured, cache-aware infrastructure for deploying Claude Code agents across
 
 The vault is organized as a four-layer hierarchy designed to maximize Claude's prefix cache hit rate. Layers loaded earlier are more cache-stable and shared across sessions.
 
-```
+```text
 ┌─────────────────────────────────────────┐
 │  00-Core          Cache Anchors         │  ← Load once. Never change mid-session.
 │  laws · circuit-breaker · identity      │    Highest cache stability.
@@ -26,90 +26,95 @@ The vault is organized as a four-layer hierarchy designed to maximize Claude's p
 └─────────────────────────────────────────┘
 ```
 
-| Layer | Path | Purpose |
-|---|---|---|
-| Cache Anchors | `00-Core/` | Laws, circuit-breaker, identity — load first on every session |
-| Standards | `01-Standards/` | Context modes, ECC rules library, composition templates |
-| Agents | `02-Agents/` | Sub-agent personas grouped by role |
-| Skills | `03-Skills/` | Domain knowledge packs, loaded on demand |
-| Workflows | `04-Workflows/` | `ignite.sh`, `install.sh`, hooks, MCP templates |
-| Blueprints | `05-Blueprints/` | Reference CLAUDE.md examples, setup guides |
-
-### Agent Groups
-
-| Group | Path | Agents |
-|---|---|---|
-| `core` | `02-Agents/core/` | architect, planner, tdd-guide |
-| `reviewers` | `02-Agents/reviewers/` | 11 language & domain reviewers |
-| `resolvers` | `02-Agents/resolvers/` | 7 build & compilation resolvers |
-| `ops` | `02-Agents/ops/` | chief-of-staff, doc-updater, e2e-runner, + 4 more |
-
 ---
 
-## The Financial Benefit — Why Prefix Caching Matters
+## Hybrid Installation (The 2026 Standard)
 
-Claude 4.6 caches repeated prompt prefixes across API calls. The V4 architecture is designed to exploit this aggressively.
+To get the ultimate environment, we use Everything Claude Code (ECC) for global terminal commands and Claude Foundation Vault (CFV) for project-level logic.
 
-| Metric | Without Caching | With V4 Cache Strategy |
-|---|---|---|
-| `00-Core` token cost | Billed every call | **~90% reduction** (cache hit) |
-| Time-to-first-token | Full prompt processing | **~80% latency reduction** |
-| Cross-session cost | Compounds per session | Amortized after first load |
+### 1. Install Global Tools (ECC Plugin)
 
-**How it works:** `00-Core/` (laws, circuit-breaker, identity) is loaded at the top of every session in a fixed order. Because the text never changes, Claude's API returns a cache hit on every subsequent call — you pay only for the new tokens. The pyramid structure ensures the most-reused content sits at the highest cache-stability position in the prompt.
-
----
-
-## Installation & Setup
-
-### 1. Clone the vault
+First, install ECC to get access to global commands like `/cost`, `/sessions`, and `/pm2`.
 
 ```bash
-git clone https://github.com/your-username/claude-foundation-vault.git ~/development/claude-foundation-vault
-cd ~/development/claude-foundation-vault
+git clone https://github.com/affaan-m/everything-claude-code.git ~/development/everything-claude-code
+cd ~/development/everything-claude-code
+
+# Use the selective installer for ONLY commands, skills, and hooks
+# (Bypassing global rules prevents 11,000+ token waste)
+node scripts/install-apply.js --components commands,skills,hooks --global
 ```
 
-### 2. Bootstrap your local paths
+### 2. Install the Project Brain (This Vault)
 
-Configuration files use a `__VAULT_ROOT__` placeholder. Resolve it to your machine's absolute path in one step:
+Clone this repository and bootstrap it to resolve local absolute paths.
 
 ```bash
+git clone https://github.com/AlexanderBeattie/claude-foundation-vault.git ~/development/claude-foundation-vault
+cd ~/development/claude-foundation-vault
 ./bootstrap.sh
 ```
 
-The script auto-detects the vault's location and rewrites `__VAULT_ROOT__` across all `.yaml`, `.md`, and `.json` files. No manual path editing required.
+### 3. Ignite a Project
 
-Verify:
-
-```bash
-grep -r "__VAULT_ROOT__" . --include="*.md" --include="*.yaml" --include="*.json"
-# Should return nothing
-```
-
-### 3. Ignite a new project
-
-Navigate to your target project root and open Claude Code:
+Navigate to any project root and launch Claude:
 
 ```bash
 cd ~/path/to/your-project
 claude
 ```
 
-Then paste the full contents of `Prompt.md` into the chat. This single prompt instructs Claude to:
-- Audit the tech stack
-- Copy the core agents, rules, and cache anchors into `./.claude/`
-- Create a project-specific `CLAUDE.md` with your project mission and vault paths
-- Run `ignite.sh` to wire the stack-specific reviewer to the canonical `code-reviewer` role
+Paste the contents of `~/development/claude-foundation-vault/Prompt.md` into the chat. Claude will automatically:
 
-No manual script execution or file copying is needed — the prompt handles everything.
+- Audit your stack.
+- Inject the V4 Triad (Architect, Planner, Reviewer).
+- Forge a modular `CLAUDE.md` wired to the vault.
 
-### 4. Activate the cache
+### 4. Activate Cache
 
-```
+Once the injection is complete, run the reset command:
+
+```bash
 /clear
 ```
 
-Claude Code reloads with all injected agents active and the `00-Core` cache anchors locked in.
+---
+
+## Global Rules — Recommended `settings.json` env Block
+
+Add these to `~/.claude/settings.json` under `"env"` to configure subagent model routing and token limits:
+
+```json
+{
+  "env": {
+    "CLAUDE_CODE_SUBAGENT_MODEL": "haiku",
+    "MAX_THINKING_TOKENS": "10000",
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "50"
+  },
+  "model": "sonnet"
+}
+```
+
+| Variable | Value | Effect |
+|---|---|---|
+| `CLAUDE_CODE_SUBAGENT_MODEL` | `haiku` | Routes all sub-agents to Haiku 4.5 — 3× cheaper for worker tasks |
+| `MAX_THINKING_TOKENS` | `10000` | Caps extended thinking budget per call (default is 31,999) |
+| `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` | `50` | Triggers auto-compaction at 50% context usage instead of 80% |
+| `model` | `sonnet` | Main orchestrator stays on Sonnet 4.6 for complex reasoning |
+
+> **Why this matters for the vault:** `ignite.sh` spawns multiple sub-agents during stack detection and injection. Without `CLAUDE_CODE_SUBAGENT_MODEL=haiku`, every sub-agent defaults to Sonnet — multiplying cost on every project boot.
+
+---
+
+## Caching Economics
+
+Claude 4.6 caches repeated prompt prefixes. By moving project rules into the Foundation Vault, we achieve:
+
+| Metric | Legacy Context | V4 Cache Strategy |
+|---|---|---|
+| 00-Core cost | Billed every call | ~90% reduction |
+| Response Latency | High (full processing) | ~80% reduction |
+| Baseline Window | 15k - 20k tokens | < 2k tokens |
 
 ---
 
@@ -117,41 +122,22 @@ Claude Code reloads with all injected agents active and the `00-Core` cache anch
 
 ```
 claude-foundation-vault/
-├── 00-Core/                    # Cache anchors — load first
-│   ├── laws.md                 # Sniper Protocol operating laws
-│   ├── circuit-breaker.md      # 3-strike failure protocol
-│   └── identity.md             # Baseline agent persona
-├── 01-Standards/
-│   ├── Context-Modes/          # dev · research · review
-│   ├── ECC-Rules-Library/      # Language rules (common + 10 languages)
-│   └── composition-templates/  # Feature-build orchestration templates
-├── 02-Agents/
-│   ├── core/                   # architect · planner · tdd-guide
-│   ├── reviewers/              # 11 language & domain reviewers
-│   ├── resolvers/              # 7 build & compilation resolvers
-│   └── ops/                    # chief-of-staff · doc-updater · e2e-runner · +4
-├── 03-Skills/                  # 116 domain knowledge packs
-├── 04-Workflows/
-│   ├── ignite.sh               # Stack-detection + agent injection
-│   ├── install.sh              # Rules library installer
-│   ├── hooks/                  # Claude Code hook definitions
-│   ├── scripts/                # Supporting JS utilities
-│   └── MCP-Templates/          # MCP server configuration templates
-├── 05-Blueprints/
-│   ├── Setup-New-Project.md    # Step-by-step ignition guide
-│   └── Reference-Examples/     # Reference CLAUDE.md files per stack
-├── CLAUDE.md                   # Command & Control — load this in your project
-├── REGISTRY.yaml               # Source of truth for all agent & skill paths
-└── Prompt.md                   # Bootstrap prompt for new project ignition
+├── 00-Core/                    # Cache anchors (laws, circuit-breaker, identity)
+├── 01-Standards/               # ECC-Rules-Library & Context Modes
+├── 02-Agents/                  # Sub-agent personas (core, reviewers, resolvers)
+├── 03-Skills/                  # 116 domain knowledge packs (Loaded on-demand)
+├── 04-Workflows/               # ignite.sh, install.sh, & bootstrap scripts
+├── 05-Blueprints/              # Setup guides and reference CLAUDE.md files
+├── REGISTRY.yaml               # Source of truth for all resource paths
+└── Prompt.md                   # The "One-Shot" Project Initializer
 ```
 
 ---
 
 ## Requirements
 
-- [Claude Code](https://claude.ai/code) CLI
-- bash 3.2+ (macOS compatible)
-- Git
+- Claude Code CLI v2.1.0+
+- bash 3.2+ (macOS/Linux)
 
 ---
 
